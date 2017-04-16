@@ -2,7 +2,7 @@ module.exports = {
 	'likes': '{ likes, plural, ' + 
 			'=0 { no likes }' +
 			'=1 { # like }' +
-			'other { # likes}}'
+			'other { # likes}}',
 	'logout': 'Logout',
 	'english': 'English',
 	'spanish': 'Spanish',
@@ -12,7 +12,7 @@ module.exports = {
 	'email': 'Email',
 	'username': 'Username',
 	'fullname': 'Fullname',
-	'password': 'Password';
+	'password': 'Password',
 	'signup.call-to-action':'Signup',
 	'signup.have-account': '¿Already have an account?',
 	'signin': 'Signin',
