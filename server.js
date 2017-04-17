@@ -6,7 +6,8 @@ app.set('view engine', 'pug');
 
 app.use(express.static('public'));
 
-app.get('/', function(req, res){
+
+app.get('/', function(req, res){		
 	res.render('index', { title:'Platzigram' });
 })
 
@@ -16,6 +17,34 @@ app.get('/signup', function(req, res){
 
 app.get('/signin', function(req, res){
 	res.render('index', { title:'Platzigram - Signin' });
+})
+
+app.get('/api/pictures', function(req, res, next){
+	var pictures = [
+    {
+      user: {
+        username: 'warevalo',
+        avatar: 'https://avatars3.githubusercontent.com/u/22353298?v=3&s=460'
+      },
+      url: 'office.jpg',
+      likes: 10,
+      liked: false,
+      createdAt: new Date().getTime()
+    },
+    {
+      user: {
+        username: 'warevalo',
+        avatar: 'https://avatars3.githubusercontent.com/u/22353298?v=3&s=460'
+      },
+      url: 'office.jpg',
+      likes: 2,
+      liked: true,
+      createdAt: new Date().setDate(new Date().getDate() - 10)
+    }
+  ];
+  setTimeout(function(){
+	  res.send(pictures);
+  }, 2000) //TimeOut para esperar antes de que nos arroje una respuesta de DB
 })
 
 app.listen(3000, function(err){
