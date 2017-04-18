@@ -4,8 +4,9 @@ var template = require('./template');
 var title = require('title');
 var request = require('superagent');
 var header = require('../header');
+var axios = require('axios');
 
-page('/', header, loadPictures ,function (ctx, next) {  //un midleware es algo que se ejecuta en la mitad de las funciones, pueden ser mas funciones
+page('/', header, loadPicturesAxios ,function (ctx, next) {  //un midleware es algo que se ejecuta en la mitad de las funciones, pueden ser mas funciones
   title('Platzigram');
   var main = document.getElementById('main-container');
 
@@ -20,5 +21,16 @@ function loadPictures(ctx, next){
 
       ctx.pictures = res.body;
       next();
+    })
+}
+function loadPicturesAxios(ctx, next){
+  axios
+    .get('/api/pictures')
+    .then(function(res){
+      ctx.pictures = res.data;
+      next();
+    })
+    .catch(function(err){
+      console.log(err);
     })
 }
